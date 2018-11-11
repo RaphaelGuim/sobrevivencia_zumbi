@@ -15,6 +15,6 @@ Faça Download do Projeto, navegue até a pasta 'Jogo' e abra o executável.
 
 ## Authors
 
-* **Raphael Guimarães** - *Initial work* - [GitHub](https://github.com/RaphaelGuim)
+* **Raphael Guimarães** - [GitHub](https://github.com/RaphaelGuim)
 
  
