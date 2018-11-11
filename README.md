@@ -9,7 +9,7 @@ Faça Download do Projeto, navegue até a pasta 'Jogo' e abra o executável.
  
 ## Construído com
 
-* [Unity](https://unity3d.com/) - Unity 
+* [Unity](https://unity3d.com/)
 
  
 
