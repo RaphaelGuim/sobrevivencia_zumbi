@@ -4,23 +4,28 @@ using UnityEngine;
 
 public class ControlaZumbi : MonoBehaviour {
 	private Rigidbody rb;
-	private GameObject jogador;
-	public float Velocidade = 5;
-	private Rigidbody rbJogador;
-	private Animator animator;
+	private GameObject jogador;	 
+	 
+	 
 	private ControlaJogador controlaJogador;
-	
+	private MovimentoPersonagem movimentoPersonagem;
+	private AnimacaoPersonagem animacaoPersonagem;
+	public Status status;
+
 
 	// Use this for initialization
 	void Start () {
 
 		jogador = GameObject.FindWithTag("Player");
-		int tipoZumbi = Random.Range(1, 28);
-		transform.GetChild(tipoZumbi).gameObject.SetActive(true);
+		
 		rb = GetComponent<Rigidbody>();
-		rbJogador = jogador.GetComponent<Rigidbody>();
-		animator = GetComponent<Animator>();
-		controlaJogador = rbJogador.GetComponent<ControlaJogador>();
+		 
+		 
+		controlaJogador = jogador.GetComponent<ControlaJogador>();
+		movimentoPersonagem = GetComponent<MovimentoPersonagem>();
+		animacaoPersonagem = GetComponent<AnimacaoPersonagem>();
+		AleatorizarZumbi();
+		status = GetComponent<Status>();
 	}
 	
 	// Update is called once per frame
@@ -29,21 +34,21 @@ public class ControlaZumbi : MonoBehaviour {
 	}
 	void FixedUpdate()
 	{
-		float distancia = Vector3.Distance(rb.position, rbJogador.position);
-		Vector3 direcao = (rbJogador.position - rb.position).normalized;		 
+		float distancia = Vector3.Distance(rb.position, jogador.transform.position);
+		Vector3 direcao = (jogador.transform.position - rb.position).normalized;		 
 		
 
 		 
 		 
 		if (distancia > 2.5){
-			
-			rb.MovePosition(rb.position + direcao * Time.deltaTime * Velocidade);
-			animator.SetBool("Atacando", false);
+
+			movimentoPersonagem.Movimentar(direcao, status.Velocidade);
+			animacaoPersonagem.Atacar(false);
 
 		}
 		else
 		{
-			animator.SetBool("Atacando", true);
+			animacaoPersonagem.Atacar(true);
 		}
 
 
@@ -53,9 +58,14 @@ public class ControlaZumbi : MonoBehaviour {
 	void AtacaJogador()
 	{
 
-		controlaJogador.Dano(Random.Range(20,30));
-		
+		controlaJogador.Dano(Random.Range(20,30));		
 
 
+	}
+
+	void AleatorizarZumbi()
+	{
+		int tipoZumbi = Random.Range(1, 28);
+		transform.GetChild(tipoZumbi).gameObject.SetActive(true);
 	}
 }

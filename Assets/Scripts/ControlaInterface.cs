@@ -4,19 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ControlaInterface : MonoBehaviour {
-	private ControlaJogador controlaJogador;
+	private Status status;
 	public Slider SliderVidaJogador;
 	// Use this for initialization
 	void Start () {
-		controlaJogador = GameObject.FindWithTag("Player").GetComponent<ControlaJogador>();
+		status = GameObject.FindWithTag("Player").GetComponent<Status>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	}
-
+	 
 	public void AtualizaVida()
 	{
-		SliderVidaJogador.value = (float)controlaJogador.Vida / controlaJogador.vidaInicial;
+		SliderVidaJogador.value = (float)status.Vida / status.VidaInicial;
 	}
 }

@@ -4,13 +4,31 @@ using UnityEngine;
 
 public class MovimentoPersonagem : MonoBehaviour {
 	Rigidbody rb;
-	private void Start()
+	public LayerMask MascaraChao;
+	private void Awake()
 	{
 		rb = GetComponent<Rigidbody>();
 	}
 
-	public void Movimentar(Vector3 direcao, float Velocidade)
+	public void Movimentar(Vector3 direcao, float velocidade)
 	{
-		rb.MovePosition(rb.position + direcao * Time.deltaTime * Velocidade);
+		rb.MovePosition(rb.position + direcao * Time.deltaTime * velocidade);
+	}
+
+	public void RotacaoJogador()
+	{
+		Ray raio = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+
+		RaycastHit impacto;
+
+		if (Physics.Raycast(raio, out impacto, 100, MascaraChao))
+		{
+			Vector3 direcaoMira = impacto.point - transform.position;
+			direcaoMira.y = transform.position.y;
+			Quaternion novaRotacao = Quaternion.LookRotation(direcaoMira);
+			novaRotacao = Quaternion.Lerp(rb.rotation, novaRotacao, 0.1f);
+			rb.MoveRotation(novaRotacao);
+		}
 	}
 }
