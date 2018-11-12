@@ -1447,7 +1447,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c79cf59dca536a47a2fe52fbfcc37c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Velocidade: 3
+  status: {fileID: 0}
+  morteZumbi: {fileID: 8300000, guid: 395f2ce85901a724d993867ab81455b7, type: 3}
 --- !u!114 &114646014984900680
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1459,7 +1460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70cb24e494dd3244c83653378a35fc6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VidaInicial: 100
+  VidaInicial: 5
   Velocidade: 3
   Vida: 0
 --- !u!136 &136816848963203190

@@ -12,10 +12,10 @@ public class AnimacaoPersonagem : MonoBehaviour {
 	}
 	public void Atacar(bool atacar)
 	{
-		animator.SetBool("Atacando", atacar);
+		animator.SetBool(Tags.Atacando, atacar);
 	}
 	public void Mover(float mover)
 	{
-		animator.SetFloat("Movendo", mover);
+		animator.SetFloat(Tags.Movendo, mover);
 	}
 }

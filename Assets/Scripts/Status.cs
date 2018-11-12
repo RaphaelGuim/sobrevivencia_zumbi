@@ -10,7 +10,7 @@ public class Status : MonoBehaviour {
 	 [HideInInspector]
 	public int Vida = 100;
 
-	public void Start()
+	public void Awake()
 	{
 		Vida = VidaInicial;
 	}

@@ -26,9 +26,15 @@ public class MovimentoPersonagem : MonoBehaviour {
 		{
 			Vector3 direcaoMira = impacto.point - transform.position;
 			direcaoMira.y = transform.position.y;
-			Quaternion novaRotacao = Quaternion.LookRotation(direcaoMira);
-			novaRotacao = Quaternion.Lerp(rb.rotation, novaRotacao, 0.1f);
-			rb.MoveRotation(novaRotacao);
+			Rotacionar(direcaoMira);
+			 
 		}
+	}
+
+	public void Rotacionar(Vector3 direcao)
+	{
+		Quaternion novaRotacao = Quaternion.LookRotation(direcao);
+		novaRotacao = Quaternion.Lerp(rb.rotation, novaRotacao, 0.1f);
+		rb.MoveRotation(novaRotacao);
 	}
 }

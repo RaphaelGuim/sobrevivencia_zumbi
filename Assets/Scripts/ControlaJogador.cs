@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ControlaJogador : MonoBehaviour {
+public class ControlaJogador : MonoBehaviour, IMatavel {
 		 
 	Vector3 direcao;
 	
@@ -48,9 +48,9 @@ public class ControlaJogador : MonoBehaviour {
 
 		Mover();		
 		 
-		if (!Vivo  && Input.GetButtonDown("Fire1"))
+		if (!Vivo  && Input.GetButtonDown(Tags.FIRE1))
 		{
-			SceneManager.LoadScene("Game");
+			SceneManager.LoadScene(Tags.Game);
 			
 		}
 	}
@@ -65,30 +65,33 @@ public class ControlaJogador : MonoBehaviour {
 
 	}
 
-	public void Dano(int dano)
-	{
-		ControlaAudio.instancia.PlayOneShot(somDano);
-
-		status.Vida -= dano;
-		controlaInterface.AtualizaVida();
-		if (status.Vida <= 0)
-		{
-			Time.timeScale = 0;
-			textoGameOver.SetActive(true);
-			 
-		}
-	}
+ 
 	public void Mover()
 	{
-		float eixoX = Input.GetAxis("Horizontal");
-		float eixoY = Input.GetAxis("Vertical");
+		float eixoX = Input.GetAxis(Tags.Horizontal);
+		float eixoY = Input.GetAxis(Tags.Vertical);
 		direcao = new Vector3(eixoX, 0, eixoY);
 
 		animacaoPersonagem.Mover(direcao.magnitude);
 	}
 
-	
+	public void TomarDano(int dano)
+	{
+		ControlaAudio.instancia.PlayOneShot(somDano);
 
+		status.Vida -= dano;
+		controlaInterface.AtualizaVida();
 
+		if (status.Vida <= 0)
+		{
 
+			Morrer();
+		}
+	}
+
+	public void Morrer()
+	{
+		Time.timeScale = 0;
+		textoGameOver.SetActive(true);
+	}
 }

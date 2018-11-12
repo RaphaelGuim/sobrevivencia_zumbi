@@ -8,7 +8,7 @@ public class ControlaInterface : MonoBehaviour {
 	public Slider SliderVidaJogador;
 	// Use this for initialization
 	void Start () {
-		status = GameObject.FindWithTag("Player").GetComponent<Status>();
+		status = GameObject.FindWithTag(Tags.Jogador).GetComponent<Status>();
 	}
 	
 	 
