@@ -63,10 +63,13 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Bala.cs" />
     <Compile Include="Assets\Scripts\ControlaArma.cs" />
+    <Compile Include="Assets\Scripts\ControlaAudio.cs" />
     <Compile Include="Assets\Scripts\ControlaCamera.cs" />
+    <Compile Include="Assets\Scripts\ControlaInterface.cs" />
     <Compile Include="Assets\Scripts\ControlaJogador.cs" />
     <Compile Include="Assets\Scripts\ControlaZumbi.cs" />
     <Compile Include="Assets\Scripts\GeradorZumbi.cs" />
+    <Compile Include="Assets\Scripts\MovimentoPersonagem.cs" />
     <None Include="Assets\Modelos3D\Personagens\Animacoes\Animacoes.txt" />
     <None Include="Assets\Modelos3D\Personagens\Animacoes\Animacoes_Zumbi.txt" />
     <Reference Include="UnityEditor.StandardEvents">

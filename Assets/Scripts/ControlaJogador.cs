@@ -4,19 +4,36 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ControlaJogador : MonoBehaviour {
-	 
+
 	public float Velocidade = 10;
 	Animator animator;
 	Rigidbody rb;
 	Vector3 direcao;
 	public LayerMask MascaraChao;
 	public GameObject textoGameOver;
-	public bool vivo = true;
+	public int vidaInicial { get { return 100; }	}
+	public int Vida;
+	public ControlaInterface controlaInterface;
+	public AudioClip somDano;
+
+	public bool Vivo
+	{
+		get
+		{
+			if (Vida <= 0)
+			{
+				return false;
+			}
+			return true;
+		} 
+	}
 
 	void Start(){
 		animator = GetComponent<Animator>();
 		rb = GetComponent<Rigidbody>();
 		Time.timeScale = 1;
+		Vida = vidaInicial;
+		  
 
 	}
 	// Update is called once per frame
@@ -34,7 +51,7 @@ public class ControlaJogador : MonoBehaviour {
 		} else {
 			animator.SetBool("Movendo",false);
 		}
-		if (!vivo && Input.GetButtonDown("Fire1"))
+		if (!Vivo  && Input.GetButtonDown("Fire1"))
 		{
 			SceneManager.LoadScene("Game");
 			
@@ -43,6 +60,7 @@ public class ControlaJogador : MonoBehaviour {
 
 	private void FixedUpdate()
 	{
+
 		rb.MovePosition(rb.position + direcao * Time.deltaTime * Velocidade);
 
 		Ray raio = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -60,6 +78,26 @@ public class ControlaJogador : MonoBehaviour {
 		}
 	}
 
-
+	public void Dano(int dano)
+	{
+		ControlaAudio.instancia.PlayOneShot(somDano);
 		 
+		Vida -= dano;
+		controlaInterface.AtualizaVida();
+		if (Vida <= 0)
+		{
+			Time.timeScale = 0;
+			textoGameOver.SetActive(true);
+			 
+		}
+
+		
+
+
+
+
+	}
+
+
+
 }

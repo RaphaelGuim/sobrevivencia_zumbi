@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ControlaZumbi : MonoBehaviour {
-	Rigidbody rb;
-	GameObject jogador;
+	private Rigidbody rb;
+	private GameObject jogador;
 	public float Velocidade = 5;
-	Rigidbody rbJogador;
-	Animator animator;
-	ControlaJogador controlaJogador;
+	private Rigidbody rbJogador;
+	private Animator animator;
+	private ControlaJogador controlaJogador;
 	
 
 	// Use this for initialization
@@ -52,10 +52,9 @@ public class ControlaZumbi : MonoBehaviour {
 
 	void AtacaJogador()
 	{
-		Time.timeScale = 0;
+
+		controlaJogador.Dano(Random.Range(20,30));
 		
-		controlaJogador.textoGameOver.SetActive(true);
-		controlaJogador.vivo = false;
 
 
 	}

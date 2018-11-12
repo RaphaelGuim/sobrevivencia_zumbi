@@ -3,7 +3,8 @@ guid: 3dea754f78714354da5fcd637155db2b
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - morteZumbi: {fileID: 8300000, guid: 395f2ce85901a724d993867ab81455b7, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

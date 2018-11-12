@@ -125,3 +125,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Velocidade: 20
+  morteZumbi: {fileID: 8300000, guid: 395f2ce85901a724d993867ab81455b7, type: 3}

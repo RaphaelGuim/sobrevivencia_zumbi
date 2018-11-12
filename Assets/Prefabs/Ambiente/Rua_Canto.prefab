@@ -21,9 +21,8 @@ GameObject:
   - component: {fileID: 4585601856761568}
   - component: {fileID: 33002879118170764}
   - component: {fileID: 23654509553597136}
-  - component: {fileID: 64901473962174270}
-  - component: {fileID: 64934017754251940}
-  m_Layer: 0
+  - component: {fileID: 64957220684912544}
+  m_Layer: 8
   m_Name: Rua_Canto
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,13 +35,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1437694135535552}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -40, y: 0.000000089109, z: 0.0001514}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: 0.00058425963, z: -0, w: -0.9999999}
+  m_LocalPosition: {x: -0.3, y: 0, z: -35.288628}
+  m_LocalScale: {x: 1.0000012, y: 1, z: 1.0000012}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -0.067, z: 0}
 --- !u!23 &23654509553597136
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -85,21 +84,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1437694135535552}
   m_Mesh: {fileID: 4300000, guid: f1c4e7cad77043d4eb1da10b11215f6a, type: 3}
---- !u!64 &64901473962174270
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1437694135535552}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: f1c4e7cad77043d4eb1da10b11215f6a, type: 3}
---- !u!64 &64934017754251940
+--- !u!64 &64957220684912544
 MeshCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}

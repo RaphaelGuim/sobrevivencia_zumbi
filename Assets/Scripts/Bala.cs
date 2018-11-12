@@ -7,6 +7,7 @@ public class Bala : MonoBehaviour {
 	Rigidbody Rb;
 	public float Velocidade;
 	float time = 0;
+	public AudioClip morteZumbi;
 	private void Start()
 	{
 		Rb = GetComponent<Rigidbody>();
@@ -25,6 +26,7 @@ public class Bala : MonoBehaviour {
 	{
 		if(other.tag == "Inimigo")
 		{
+			ControlaAudio.instancia.PlayOneShot(morteZumbi);
 			Destroy(other.gameObject);
 			
 		}
