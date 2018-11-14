@@ -31,45 +31,45 @@ public class ControlaZumbi : MonoBehaviour, IMatavel {
 		animacaoPersonagem = GetComponent<AnimacaoPersonagem>();
 		AleatorizarZumbi();
 		status = GetComponent<Status>();
-	 
+
+		tempoPosicao = Random.value * 6 + 4;
+
+
 
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		//transform.LookAt(jogador.transform.position);
+		
 	}
 	void FixedUpdate()
 	{
+		rb.velocity = Vector3.zero;
+
 		float distancia = Vector3.Distance(rb.position, jogador.transform.position);
-		 
-
-		movimentoPersonagem.Rotacionar(direcao);
-		animacaoPersonagem.Mover(direcao.magnitude);
-
+		direcao = jogador.transform.position - transform.position;
 
 		if (distancia > 15)
 		{
 			Vagar();
 		}		 
 		else if (distancia > 2.5){
-			direcao = jogador.transform.position - transform.position;
-			movimentoPersonagem.Movimentar(direcao.normalized, status.Velocidade);			
+			Mover();
 			animacaoPersonagem.Atacar(false);
-
 		}
 		else
 		{
+			movimentoPersonagem.Rotacionar(direcao);
 			animacaoPersonagem.Atacar(true);
 		}
 
 
 		
 	}
-	Vector3 GerarPosicaoAleatoria()
+	public Vector3 GerarPosicaoAleatoria()
 	{
-		Vector3 posicao = Random.insideUnitSphere * 10;
+		Vector3 posicao = Random.insideUnitSphere * (Random.value * 8 + 2);
 		posicao += transform.position;
 		posicao.y = transform.position.y;
 		return posicao;
@@ -89,14 +89,15 @@ public class ControlaZumbi : MonoBehaviour, IMatavel {
 
 		if (direcao.magnitude > 0.1f)
 		{
-			movimentoPersonagem.Movimentar(direcao , status.Velocidade);
-			movimentoPersonagem.Rotacionar(direcao.normalized);
+			Mover();
 		}
+		 
+		 
 		
 	}
 	void AtacaJogador()
 	{
-
+		direcao = Vector3.zero;
 		controlaJogador.TomarDano(Random.Range(20,30));		
 
 
@@ -122,5 +123,13 @@ public class ControlaZumbi : MonoBehaviour, IMatavel {
 	{
 		ControlaAudio.instancia.PlayOneShot(morteZumbi);
 		Destroy(gameObject);
+	}
+
+	private void Mover()
+	{
+		animacaoPersonagem.Mover(direcao.magnitude);
+		movimentoPersonagem.Movimentar(direcao, status.Velocidade);
+		movimentoPersonagem.Rotacionar(direcao.normalized);
+		
 	}
 }

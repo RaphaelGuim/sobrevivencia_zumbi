@@ -1,13 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 
 public class ControlaJogador : MonoBehaviour, IMatavel {
 		 
 	Vector3 direcao;
-	
-	public GameObject textoGameOver;	 
 
 	Status status;
 
@@ -46,18 +44,15 @@ public class ControlaJogador : MonoBehaviour, IMatavel {
 	
 	void Update () {
 
-		Mover();		
+		Mover();	
 		 
-		if (!Vivo  && Input.GetButtonDown(Tags.FIRE1))
-		{
-			SceneManager.LoadScene(Tags.Game);
-			
-		}
+		 
 	}
 
 	private void FixedUpdate()
 	{
-
+		GetComponent<Rigidbody>().velocity = Vector3.zero;
+		 
 		movimentarPersonagem.Movimentar(direcao, status.Velocidade);
 
 		movimentarPersonagem.RotacaoJogador();
@@ -91,7 +86,7 @@ public class ControlaJogador : MonoBehaviour, IMatavel {
 
 	public void Morrer()
 	{
-		Time.timeScale = 0;
-		textoGameOver.SetActive(true);
+		
+		controlaInterface.GameOver();
 	}
 }

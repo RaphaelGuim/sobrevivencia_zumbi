@@ -5,14 +5,20 @@ using UnityEngine;
 public class MovimentoPersonagem : MonoBehaviour {
 	Rigidbody rb;
 	public LayerMask MascaraChao;
+	 
 	private void Awake()
 	{
 		rb = GetComponent<Rigidbody>();
 	}
 
-	public void Movimentar(Vector3 direcao, float velocidade)
-	{
-		rb.MovePosition(rb.position + direcao * Time.deltaTime * velocidade);
+	public void Movimentar(Vector3 direcao, float velocidade)	{
+
+		Vector3 posicao = rb.position + direcao.normalized * Time.deltaTime * velocidade;
+	 
+			
+		rb.MovePosition(posicao);
+	 
+		 
 	}
 
 	public void RotacaoJogador()
@@ -33,8 +39,12 @@ public class MovimentoPersonagem : MonoBehaviour {
 
 	public void Rotacionar(Vector3 direcao)
 	{
-		Quaternion novaRotacao = Quaternion.LookRotation(direcao);
-		novaRotacao = Quaternion.Lerp(rb.rotation, novaRotacao, 0.1f);
-		rb.MoveRotation(novaRotacao);
+		if (direcao.magnitude != 0)
+		{
+			Quaternion novaRotacao = Quaternion.LookRotation(direcao);
+			novaRotacao = Quaternion.Lerp(rb.rotation, novaRotacao, 0.1f);
+			rb.MoveRotation(novaRotacao);
+		}
+	
 	}
 }

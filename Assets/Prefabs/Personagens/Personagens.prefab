@@ -1779,7 +1779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70cb24e494dd3244c83653378a35fc6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VidaInicial: 100
+  VidaInicial: 100000
   Velocidade: 5
   Vida: 0
 --- !u!114 &114764671484457178
@@ -1793,9 +1793,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab7e38bf4590244e9c1663121d5dce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Velocidade: 10
-  textoGameOver: {fileID: 0}
-  Vida: 0
   controlaInterface: {fileID: 0}
   somDano: {fileID: 8300000, guid: a764ff2ab50949a4bbcd47eda53444ae, type: 3}
 --- !u!136 &136441394004389122

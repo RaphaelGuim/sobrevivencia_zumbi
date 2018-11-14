@@ -7,6 +7,8 @@ public class GeradorZumbi : MonoBehaviour {
 	public GameObject modeloZumbi;
 	float contador = 0;
 	public float tempoGerar = 2;
+	public LayerMask LayerZumbi;
+	  
 	// Use this for initialization
 	void Start () {
 		
@@ -19,8 +21,33 @@ public class GeradorZumbi : MonoBehaviour {
 		if (contador >= tempoGerar)
 		{
 			contador = 0;
-			Instantiate(modeloZumbi, transform.position, transform.rotation);			
+			GerarNovoZumbi();	
 			 
 		}
 	}
+
+	private Vector3 GerarPosicaoAleatoria()
+	{
+		Vector3 posicao = Random.insideUnitSphere * (Random.value * 2 + 3);
+		posicao += transform.position;
+		posicao.y = transform.position.y;
+		return posicao;
+	}
+
+	private void GerarNovoZumbi()
+	{
+		Vector3 posicaoGeracao = GerarPosicaoAleatoria();
+		Collider[] colisores = Physics.OverlapSphere(posicaoGeracao,1, LayerZumbi);
+
+		if (colisores.Length > 0)
+		{
+			GerarNovoZumbi();
+		}
+		else
+		{
+			Instantiate(modeloZumbi, posicaoGeracao, transform.rotation);
+		}
+		
+	}
+
 }
