@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine; 
 
-public class Bala : MonoBehaviour {
+public class Bala : MonoBehaviour
+{
 
 	Rigidbody Rb;
 	public float Velocidade;
@@ -12,8 +13,9 @@ public class Bala : MonoBehaviour {
 	{
 		Rb = GetComponent<Rigidbody>();
 	}
-	private void FixedUpdate()	{
-		
+	private void FixedUpdate()
+	{
+
 		Rb.MovePosition((Rb.position + transform.forward * Velocidade * Time.deltaTime));
 		time += Time.deltaTime;
 		if (time > 3)
@@ -24,12 +26,13 @@ public class Bala : MonoBehaviour {
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if(other.tag == Tags.Inimigo)
+		if (other.tag == Tags.Inimigo)
 		{
-			other.GetComponent<ControlaZumbi>().TomarDano(DanoTiro);
-			
+			other.GetComponent<IMatavel>().TomarDano(DanoTiro);
+
 		}
 		Destroy(gameObject);
 
 	}
 }
+ 

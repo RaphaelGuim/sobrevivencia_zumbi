@@ -47,4 +47,11 @@ public class MovimentoPersonagem : MonoBehaviour {
 		}
 	
 	}
+
+	public void Morrer()
+	{
+		GetComponent<Collider>().enabled = false;
+		rb.constraints = RigidbodyConstraints.None;		
+		rb.velocity = Vector3.zero;
+	}
 }

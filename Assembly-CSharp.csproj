@@ -63,14 +63,20 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\AnimacaoPersonagem.cs" />
     <Compile Include="Assets\Scripts\Bala.cs" />
+    <Compile Include="Assets\Scripts\Billboard.cs" />
     <Compile Include="Assets\Scripts\ControlaArma.cs" />
     <Compile Include="Assets\Scripts\ControlaAudio.cs" />
     <Compile Include="Assets\Scripts\ControlaCamera.cs" />
+    <Compile Include="Assets\Scripts\ControlaChefe.cs" />
     <Compile Include="Assets\Scripts\ControlaInterface.cs" />
     <Compile Include="Assets\Scripts\ControlaJogador.cs" />
     <Compile Include="Assets\Scripts\ControlaZumbi.cs" />
+    <Compile Include="Assets\Scripts\GeradorChefe.cs" />
     <Compile Include="Assets\Scripts\GeradorZumbi.cs" />
+    <Compile Include="Assets\Scripts\ICuravel.cs" />
     <Compile Include="Assets\Scripts\IMatavel.cs" />
+    <Compile Include="Assets\Scripts\KitMedico.cs" />
+    <Compile Include="Assets\Scripts\Menu.cs" />
     <Compile Include="Assets\Scripts\MovimentoPersonagem.cs" />
     <Compile Include="Assets\Scripts\Status.cs" />
     <Compile Include="Assets\Scripts\Tags.cs" />

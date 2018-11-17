@@ -18,4 +18,10 @@ public class AnimacaoPersonagem : MonoBehaviour {
 	{
 		animator.SetFloat(Tags.Movendo, mover);
 	}
+
+	public void Morrer()
+	{
+		animator.SetTrigger(Tags.Morrer);
+		 
+	}
 }

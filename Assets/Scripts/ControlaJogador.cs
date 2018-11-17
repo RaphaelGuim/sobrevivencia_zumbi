@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class ControlaJogador : MonoBehaviour, IMatavel {
-		 
+public class ControlaJogador : MonoBehaviour, IMatavel, ICuravel
+{
+
 	Vector3 direcao;
 
 	Status status;
@@ -23,16 +24,17 @@ public class ControlaJogador : MonoBehaviour, IMatavel {
 				return false;
 			}
 			return true;
-		} 
+		}
 	}
 
-	void Start(){
+	void Start()
+	{
 
 		status = GetComponent<Status>();
 
 
 		Time.timeScale = 1;
-		 
+
 		movimentarPersonagem = GetComponent<MovimentoPersonagem>();
 		animacaoPersonagem = GetComponent<AnimacaoPersonagem>();
 
@@ -41,18 +43,19 @@ public class ControlaJogador : MonoBehaviour, IMatavel {
 	}
 	// Update is called once per frame
 
-	
-	void Update () {
 
-		Mover();	
-		 
-		 
+	void Update()
+	{
+
+		Mover();
+
+
 	}
 
 	private void FixedUpdate()
 	{
 		GetComponent<Rigidbody>().velocity = Vector3.zero;
-		 
+
 		movimentarPersonagem.Movimentar(direcao, status.Velocidade);
 
 		movimentarPersonagem.RotacaoJogador();
@@ -60,7 +63,7 @@ public class ControlaJogador : MonoBehaviour, IMatavel {
 
 	}
 
- 
+
 	public void Mover()
 	{
 		float eixoX = Input.GetAxis(Tags.Horizontal);
@@ -86,7 +89,20 @@ public class ControlaJogador : MonoBehaviour, IMatavel {
 
 	public void Morrer()
 	{
-		
+
 		controlaInterface.GameOver();
+	}
+
+	public void CurarVida(int quantidade)
+	{
+
+		status.Vida += quantidade;
+		controlaInterface.AtualizaVida();
+
+		if (status.Vida > status.VidaInicial)
+		{
+			status.Vida = status.VidaInicial;
+		}
+
 	}
 }

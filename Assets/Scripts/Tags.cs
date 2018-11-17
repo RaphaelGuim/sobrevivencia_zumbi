@@ -6,6 +6,7 @@ public class Tags : MonoBehaviour {
 
 	public const string Jogador = "Player";
 	public const string Inimigo = "Inimigo";
+	public const string Chefe = "Chefe";
 	public const string FIRE1 = "Fire1";
 
 	public const string Game = "Game";
@@ -13,5 +14,8 @@ public class Tags : MonoBehaviour {
 	public const string Vertical = "Vertical";
 	public const string Atacando = "Atacando";
 	public const string Movendo = "Movendo";
+	public const string Morrer = "Morrer";
+
+	public const string ZumbisMortosMaximo = "zumbisMortosMaximo";
 
 }

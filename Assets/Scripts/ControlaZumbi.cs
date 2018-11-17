@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ControlaZumbi : MonoBehaviour, IMatavel {
 	private Rigidbody rb;
-	private GameObject jogador;	 
-	 
-	 
+	private GameObject jogador;
+
+
 	private ControlaJogador controlaJogador;
 	private MovimentoPersonagem movimentoPersonagem;
 	private AnimacaoPersonagem animacaoPersonagem;
@@ -15,17 +15,21 @@ public class ControlaZumbi : MonoBehaviour, IMatavel {
 
 	private Vector3 posicaoAleatoria;
 	private Vector3 direcao;
-	private float contadorVagar=0;
+	private float contadorVagar = 0;
 	private float tempoPosicao = 4;
+	private float porcentagemGerarKitMedico = 0.1f;
+	public GameObject kitMedico;
+	private ControlaInterface controlaInterface;
+	public GeradorZumbi gerador;
 
 	// Use this for initialization
-	void Start () {
+	void Start() {
 
 		jogador = GameObject.FindWithTag(Tags.Jogador);
-		
+
 		rb = GetComponent<Rigidbody>();
-		 
-		 
+
+
 		controlaJogador = jogador.GetComponent<ControlaJogador>();
 		movimentoPersonagem = GetComponent<MovimentoPersonagem>();
 		animacaoPersonagem = GetComponent<AnimacaoPersonagem>();
@@ -34,15 +38,11 @@ public class ControlaZumbi : MonoBehaviour, IMatavel {
 
 		tempoPosicao = Random.value * 6 + 4;
 
-
+		controlaInterface = GameObject.FindObjectOfType(typeof(ControlaInterface)) as ControlaInterface;
 
 
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
 	void FixedUpdate()
 	{
 		rb.velocity = Vector3.zero;
@@ -53,8 +53,8 @@ public class ControlaZumbi : MonoBehaviour, IMatavel {
 		if (distancia > 15)
 		{
 			Vagar();
-		}		 
-		else if (distancia > 2.5){
+		}
+		else if (distancia > 2.5) {
 			Mover();
 			animacaoPersonagem.Atacar(false);
 		}
@@ -65,7 +65,7 @@ public class ControlaZumbi : MonoBehaviour, IMatavel {
 		}
 
 
-		
+
 	}
 	public Vector3 GerarPosicaoAleatoria()
 	{
@@ -78,34 +78,35 @@ public class ControlaZumbi : MonoBehaviour, IMatavel {
 
 	{
 		contadorVagar -= Time.deltaTime;
-		if(contadorVagar <= 0)
+		if (contadorVagar <= 0)
 		{
 			posicaoAleatoria = GerarPosicaoAleatoria();
 			contadorVagar = tempoPosicao;
 		}
-		
-		 
+
+
 		direcao = posicaoAleatoria - transform.position;
 
 		if (direcao.magnitude > 0.1f)
 		{
 			Mover();
 		}
-		 
-		 
-		
+
+
+
 	}
-	void AtacaJogador()
+	private void AtacaJogador()
 	{
+		 
 		direcao = Vector3.zero;
-		controlaJogador.TomarDano(Random.Range(20,30));		
+		controlaJogador.TomarDano(Random.Range(20, 30));
 
 
 	}
 
 	void AleatorizarZumbi()
 	{
-		int tipoZumbi = Random.Range(1, 28);
+		int tipoZumbi = Random.Range(1, transform.childCount);
 		transform.GetChild(tipoZumbi).gameObject.SetActive(true);
 	}
 
@@ -121,9 +122,19 @@ public class ControlaZumbi : MonoBehaviour, IMatavel {
 
 	public void Morrer()
 	{
+		Destroy(gameObject,2);
 		ControlaAudio.instancia.PlayOneShot(morteZumbi);
-		Destroy(gameObject);
+		this.enabled = false;
+		VerificarGeracaoKitMedico(porcentagemGerarKitMedico);
+		controlaInterface.AtualizarQuantidadeZumbisMortos();
+		gerador.DiminueZumbisVivos();
+		animacaoPersonagem.Morrer();
+		movimentoPersonagem.Morrer();
+
+
 	}
+
+	 
 
 	private void Mover()
 	{
@@ -131,5 +142,14 @@ public class ControlaZumbi : MonoBehaviour, IMatavel {
 		movimentoPersonagem.Movimentar(direcao, status.Velocidade);
 		movimentoPersonagem.Rotacionar(direcao.normalized);
 		
+	}
+
+	private void VerificarGeracaoKitMedico(float porcentagem )
+	{
+		
+		if (Random.value <= porcentagem)			
+		{
+			Instantiate(kitMedico, transform.position, Quaternion.identity);
+		}
 	}
 }
