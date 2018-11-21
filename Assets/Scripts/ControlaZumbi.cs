@@ -21,6 +21,8 @@ public class ControlaZumbi : MonoBehaviour, IMatavel {
 	public GameObject kitMedico;
 	private ControlaInterface controlaInterface;
 	public GeradorZumbi gerador;
+	public GameObject ParticulaSangue;
+	
 
 	// Use this for initialization
 	void Start() {
@@ -118,6 +120,13 @@ public class ControlaZumbi : MonoBehaviour, IMatavel {
 		{
 			Morrer();
 		}
+		
+	}
+	public void Sangrar(Vector3 position, Quaternion rotation)
+	{
+		Instantiate(ParticulaSangue,  position,  rotation);
+
+		 
 	}
 
 	public void Morrer()

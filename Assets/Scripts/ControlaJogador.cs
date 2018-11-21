@@ -87,6 +87,10 @@ public class ControlaJogador : MonoBehaviour, IMatavel, ICuravel
 		}
 	}
 
+	public void Sangrar(Vector3 position, Quaternion rotation)
+	{
+
+	}
 	public void Morrer()
 	{
 

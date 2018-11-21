@@ -17,6 +17,8 @@ public class ControlaInterface : MonoBehaviour {
 	public Text TextoZumbisAtual;
 	public Text TextoZumbisMaximo;
 	public Text TextoChefe;
+	public Text TextoBalas;
+	 
 
 	// Use this for initialization
 	void Start () {
@@ -24,6 +26,7 @@ public class ControlaInterface : MonoBehaviour {
 		tempoMaximo = PlayerPrefs.GetFloat("tempoMaximo");
 		zumbisMortosMaximo = PlayerPrefs.GetInt(Tags.ZumbisMortosMaximo);
 		status = GameObject.FindWithTag(Tags.Jogador).GetComponent<Status>();
+		 
 	}
 
 	public void AtualizarQuantidadeZumbisMortos()
@@ -31,7 +34,10 @@ public class ControlaInterface : MonoBehaviour {
 		quantidadeZumbisMortos++;
 		TextoZumbisMortos.text = " x " + quantidadeZumbisMortos;
 	}
-	
+	public void AtualizarQuantidadeBalas(int balas)
+	{
+		TextoBalas.text = "Balas: " + balas;
+	}
 	 
 	public void AtualizaVida()
 	{

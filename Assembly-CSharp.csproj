@@ -78,6 +78,7 @@
     <Compile Include="Assets\Scripts\KitMedico.cs" />
     <Compile Include="Assets\Scripts\Menu.cs" />
     <Compile Include="Assets\Scripts\MovimentoPersonagem.cs" />
+    <Compile Include="Assets\Scripts\Municao.cs" />
     <Compile Include="Assets\Scripts\Status.cs" />
     <Compile Include="Assets\Scripts\Tags.cs" />
     <None Include="Assets\Modelos3D\Personagens\Animacoes\Animacoes.txt" />

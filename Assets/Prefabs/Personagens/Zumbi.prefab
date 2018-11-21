@@ -1303,8 +1303,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1063500868937916}
-  m_LocalRotation: {x: -0, y: -0.93704706, z: -0, w: 0.34920323}
-  m_LocalPosition: {x: -37.322006, y: -0.1947958, z: -134.10936}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -128.79938, y: -0.1947958, z: -92.12334}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4388596583815700}
@@ -1337,7 +1337,7 @@ Transform:
   - {fileID: 4907605347408658}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -139.123, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4962514885412186
 Transform:
   m_ObjectHideFlags: 1
@@ -1440,6 +1440,8 @@ MonoBehaviour:
   morteZumbi: {fileID: 8300000, guid: 395f2ce85901a724d993867ab81455b7, type: 3}
   kitMedico: {fileID: 1060151288946202, guid: 6150c6f66b7034ec5b3672478195682a, type: 2}
   gerador: {fileID: 0}
+  ParticulaSangue: {fileID: 1647356364152452, guid: 706a7f6177e54ba4aba7bf02d1102f53,
+    type: 2}
 --- !u!114 &114172610048820972
 MonoBehaviour:
   m_ObjectHideFlags: 1

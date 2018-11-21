@@ -14,9 +14,12 @@ public class ControlaChefe : MonoBehaviour, IMatavel {
 	private ControlaJogador controlaJogador;
 	public AudioClip morteZumbi;
 	public GameObject kitMedico;
+	public GameObject ParticulaSangue;
 	public Slider slider;
 	public Image ImageSlider;
 	public Color VidaMaxima, VidaMinima;
+	
+
 
 	private float CalculaPorcentagemAtual()
 	{
@@ -43,6 +46,8 @@ public class ControlaChefe : MonoBehaviour, IMatavel {
 		ImageSlider.color = Color.Lerp(VidaMinima, VidaMaxima, CalculaPorcentagemAtual());
 
 	}
+
+	 
 
 	private void FixedUpdate()
 	{
@@ -98,5 +103,10 @@ public class ControlaChefe : MonoBehaviour, IMatavel {
 		movimento.Morrer();
 		ControlaAudio.instancia.PlayOneShot(morteZumbi);
 		Instantiate(kitMedico, transform.position, Quaternion.identity);
+	}
+
+	public void Sangrar(Vector3 position, Quaternion rotation)
+	{
+		Instantiate(ParticulaSangue, position, rotation);
 	}
 }

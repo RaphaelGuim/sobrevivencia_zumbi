@@ -28,7 +28,10 @@ public class Bala : MonoBehaviour
 	{
 		if (other.tag == Tags.Inimigo)
 		{
-			other.GetComponent<IMatavel>().TomarDano(DanoTiro);
+			Quaternion direcao = Quaternion.LookRotation(-transform.forward);
+			IMatavel imatavel = other.GetComponent<IMatavel>();
+			imatavel.TomarDano(DanoTiro);
+			imatavel.Sangrar(transform.position, direcao);
 
 		}
 		Destroy(gameObject);

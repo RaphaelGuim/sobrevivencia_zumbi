@@ -6,6 +6,8 @@ public class GeradorZumbi : MonoBehaviour {
 
 	public GameObject modeloZumbi;
 	float contador = 0;
+	float tempoBalas;
+	float contadorBalas;
 	public float tempoGerar = 2;
 	public LayerMask LayerZumbi;	
 	private int quantidadeMaximaZumbis = 2;	
@@ -13,19 +15,36 @@ public class GeradorZumbi : MonoBehaviour {
 	private float tempoAumentoDificuldade = 30;
 	private float contadorTempoDificuldade = 0;
 	private GameObject jogador;
+	public GameObject Municao;
 	
 
 	// Use this for initialization
 	void Start () {
 
 		jogador = GameObject.FindWithTag(Tags.Jogador);
+		tempoBalas = 20;
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
 		contador += Time.deltaTime;
 		contadorTempoDificuldade += Time.deltaTime;
+
+		contadorBalas += Time.deltaTime;
+
+		if(contadorBalas > tempoBalas)
+		{
+			Vector3 posicao = GerarPosicaoAleatoria();
+			if (Vector3.Distance(posicao, jogador.transform.position) > 30)
+			{
+				GameObject municao = Instantiate(Municao, posicao, transform.rotation);
+				contadorBalas = 0;
+				Destroy(municao, 60);
+			}
+			
+		}
 
 		if (contador >= tempoGerar)
 		{
@@ -38,11 +57,14 @@ public class GeradorZumbi : MonoBehaviour {
 			contadorTempoDificuldade = 0;
 			quantidadeMaximaZumbis += 3;
 		}
+
+		 
+
 	}
 
 	private Vector3 GerarPosicaoAleatoria()
 	{
-		Vector3 posicao = Random.insideUnitSphere * (Random.value * 2 + 3);
+		Vector3 posicao = Random.insideUnitSphere * (Random.value * 5 + 3);
 		posicao += transform.position;
 		posicao.y = transform.position.y;
 		return posicao;
